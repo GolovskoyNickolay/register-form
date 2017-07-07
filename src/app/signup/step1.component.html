@@ -1,16 +1,42 @@
 
-<form novalidate [formGroup]="form">
+<!--<form novalidate [formGroup]="form" *ngIf="hideStep2">-->
+  <!--<div style="padding: 10px">-->
+    <!--<p>First Step</p>-->
+    <!--<input class="form-control"  type="text" formControlName="name" placeholder="Name"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="surname" placeholder="Surname"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="age" placeholder="dd/mm/yyyy"><br>-->
+    <!--<input class="form-control"  type="tel" formControlName="tel" placeholder="Phone"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="address" placeholder="Address"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="city" placeholder="City"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="street" placeholder="Street"><br>-->
+  <!--</div>-->
+  <!--<button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()"><a style="width: 100%" routerLink="/step2">Finish</a></button>-->
+<!--</form>-->
+<step2 *ngIf="!hideStep2" [childData]='toChildData'></step2>
+
+
+<form  #form="ngForm" *ngIf="hideStep2">
   <div style="padding: 10px">
     <p>First Step</p>
-    <input class="form-control"  type="text" formControlName="name" placeholder="Name"><br>
-    <input class="form-control"  type="text" formControlName="surname" placeholder="Surname"><br>
-    <input class="form-control"  type="text" formControlName="age" placeholder="dd/mm/yyyy"><br>
-    <input class="form-control"  type="tel" formControlName="tel" placeholder="Phone"><br>
-    <input class="form-control"  type="text" formControlName="address" placeholder="Address"><br>
-    <input class="form-control"  type="text" formControlName="city" placeholder="City"><br>
-    <input class="form-control"  type="text" formControlName="street" placeholder="Street"><br>
+    <input class="form-control"  type="text"
+           required
+           minlength="2"
+           maxlength="15"
+           name="name"
+           [(ngModel)]="userData1.name"
+           placeholder="Name"><br>
+    <!--<input class="form-control"  type="text" formControlName="surname" placeholder="Surname"><br>-->
+    <input class="form-control"  type="text"
+           required
+           pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}"
+           [(ngModel)]="userData1.age"
+           (change)="dateCheck($event)"
+           name="age"
+           placeholder="dd/mm/yyyy"><br>
+    <!--<input class="form-control"  type="tel" formControlName="tel" placeholder="Phone"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="address" placeholder="Address"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="city" placeholder="City"><br>-->
+    <!--<input class="form-control"  type="text" formControlName="street" placeholder="Street"><br>-->
   </div>
-  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()"><a style="width: 100%" routerLink="/step2">Finish</a></button>
+  <button type="button" class="btn btn-primary" [disabled]="checkage || form.invalid" (click)="next()">Finish</button>
 </form>
-<step2 [title]='childTitle'></step2>
-

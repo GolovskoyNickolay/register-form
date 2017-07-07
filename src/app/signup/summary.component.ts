@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { Validation } from '../validation.service';
 
 
@@ -11,8 +11,11 @@ import { Validation } from '../validation.service';
 })
 
 export class Summary{
+    @Input() data:any;
   constructor(){
 
   }
-
+    edit(){
+    console.log(this.data);
+    }
 }
