@@ -1,0 +1,25 @@
+<form novalidate [formGroup]="form" class="form-group">
+  <div style="padding: 10px">
+    <p>First Step</p>
+      <input class="form-control" type="text" formControlName="username" placeholder="Username"><br>
+      <input class="form-control"  type="password" formControlName="password" placeholder="Password"><br>
+      <input class="form-control"  type="password" formControlName="confirmPassword" placeholder="Confirm Password"><br>
+      <select class="form-control" formControlName="employ" (change)="onChange($event.target.value)">
+        <option>Employed</option>
+        <option>Unemployed</option>
+        <option>Student</option>
+      </select><br>
+    <input class="form-control" *ngIf="hidden" type="text" formControlName="work" placeholder="Where you are employed?"><br>
+    <select class="form-control" formControlName="money">
+      <option><10000$</option>
+      <option>20000$</option>
+      <option>30000$</option>
+      <option>40000$</option>
+      <option>>50000$</option>
+    </select><br>
+    <input class="form-control" type="text" formControlName="sport" placeholder="Favorite sport"><br>
+    <label for="terms">I accept terms and conditionals</label>
+    <input id="terms" type="checkbox" value="false" formControlName="terms">
+  </div>
+<button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="finish()">Continue</button>
+</form>

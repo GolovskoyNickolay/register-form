@@ -1,5 +1,5 @@
 <header>
-  <button>Log in</button>
+  <button (click)="logIn()"><a routerLink="/step1">Log in</a></button>
   <button *ngIf="isLogin">Log out</button>
   <button>Sign up</button>
   <hr>

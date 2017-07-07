@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,2BAA4B;EAAC,MAAM,EAAC,aAAa;;AACjD,yBAA0B;EAAC,MAAM,EAAC,eAAe",
+"sources": ["step2.component.scss"],
+"names": [],
+"file": "step2.component.css"
+}

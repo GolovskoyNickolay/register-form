@@ -1,0 +1,16 @@
+
+<form novalidate [formGroup]="form">
+  <div style="padding: 10px">
+    <p>First Step</p>
+    <input class="form-control"  type="text" formControlName="name" placeholder="Name"><br>
+    <input class="form-control"  type="text" formControlName="surname" placeholder="Surname"><br>
+    <input class="form-control"  type="text" formControlName="age" placeholder="dd/mm/yyyy"><br>
+    <input class="form-control"  type="tel" formControlName="tel" placeholder="Phone"><br>
+    <input class="form-control"  type="text" formControlName="address" placeholder="Address"><br>
+    <input class="form-control"  type="text" formControlName="city" placeholder="City"><br>
+    <input class="form-control"  type="text" formControlName="street" placeholder="Street"><br>
+  </div>
+  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()"><a style="width: 100%" routerLink="/step2">Finish</a></button>
+</form>
+<step2 [title]='childTitle'></step2>
+

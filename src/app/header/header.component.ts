@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'header-component',
@@ -7,8 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
       isLogin: boolean = false;
-  constructor(){
+      constructor(){
+
+      }
+
+  logIn(){
 
   }
-
 }
