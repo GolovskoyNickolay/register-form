@@ -1,1 +1,74 @@
-<button (click)="edit()">Edit</button>
+<form [formGroup]="form" class="summary-form">
+  <div *ngIf="!editMode" class="edit-mode"></div>
+  <div class="custom-wrapper">
+
+    <div class="custom-control">
+      <input  type="text" formControlName="name" id="name" readonly class="not-allowed">
+      <label for="name">Name</label>
+    </div>
+    <div class="custom-control">
+      <input type="text" formControlName="surname" id="surname" readonly>
+      <label for="surname">Surname</label>
+    </div>
+    <div class="custom-control">
+      <input type="text" formControlName="age" id="age">
+      <label for="age">Date of birth</label>
+    </div>
+
+    <div class="custom-control">
+      <input type="tel" formControlName="tel" id="phone">
+      <label for="phone">Phone</label>
+    </div>
+    <div class="custom-control">
+      <input type="text" formControlName="address" id="address">
+      <label for="address">Address</label>
+    </div>
+    <div class="custom-control">
+      <input type="text" formControlName="city" id="city">
+      <label for="city">City</label>
+    </div>
+    <div class="custom-control" *ngIf="data.street">
+      <input type="text" formControlName="street" id="street">
+      <label for="street">Street</label>
+    </div>
+    <div class="custom-control">
+      <input type="text" formControlName="username" id="username">
+      <label for="username">Username</label>
+    </div>
+    <div class="custom-control">
+      <input type="password" formControlName="password" id="password">
+      <label for="password">Password</label>
+    </div>
+    <div class="custom-control">
+      <select formControlName="employ" (change)="onChange($event.target.value)" id="status">
+        <option>Employed</option>
+        <option>Unemployed</option>
+        <option>Student</option>
+      </select>
+      <label for="status">Employment status</label>
+    </div>
+    <div class="custom-control" *ngIf="hidden">
+      <input  type="text" formControlName="work" id="employ">
+      <label  for="employ">Where you are employed?</label>
+    </div>
+    <div class="custom-control" *ngIf="data.money">
+      <select formControlName="money" id="money">
+        <option><10000$</option>
+        <option>20000$</option>
+        <option>30000$</option>
+        <option>40000$</option>
+        <option>>50000$</option>
+      </select>
+      <label  for="money">How much do you earn? </label>
+    </div>
+    <div class="custom-control" *ngIf="data.sport">
+      <input  type="text" formControlName="sport"  id="sport">
+      <label  for="sport">Favorite sport</label>
+    </div>
+
+  </div>
+
+  <button type="button" class="btn btn-primary summary-btn" *ngIf="!editMode" (click)="edit()">Edit</button>
+  <button type="button" class="btn btn-primary summary-btn" *ngIf="editMode" [disabled]="form.invalid" (click)="saveEdit()">Save</button>
+</form>
+

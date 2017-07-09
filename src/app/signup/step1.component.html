@@ -1,42 +1,48 @@
 
-<!--<form novalidate [formGroup]="form" *ngIf="hideStep2">-->
-  <!--<div style="padding: 10px">-->
-    <!--<p>First Step</p>-->
-    <!--<input class="form-control"  type="text" formControlName="name" placeholder="Name"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="surname" placeholder="Surname"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="age" placeholder="dd/mm/yyyy"><br>-->
-    <!--<input class="form-control"  type="tel" formControlName="tel" placeholder="Phone"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="address" placeholder="Address"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="city" placeholder="City"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="street" placeholder="Street"><br>-->
-  <!--</div>-->
-  <!--<button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()"><a style="width: 100%" routerLink="/step2">Finish</a></button>-->
-<!--</form>-->
-<step2 *ngIf="!hideStep2" [childData]='toChildData'></step2>
+<div class="steps" *ngIf="hideStep2">
+  <span class="steps__step steps__step_active" >Step 1</span>
+  <span class="steps__step">Step 2</span>
+</div>
+<form novalidate [formGroup]="form" *ngIf="hideStep2">
+  <div class="form-wrapper">
+    <label for="name">Name</label>
+    <input class="form-control"  type="text" formControlName="name" placeholder="Name" id="name">
+    <div *ngIf="!form.get('name').pristine && !form.get('name').valid" class="alert alert-danger">
+     Name is required and should be from 2 to 15 letters
+    </div>
+    <label for="surname">Surname</label>
+    <input class="form-control"  type="text" formControlName="surname" placeholder="Surname" id="surname">
+    <div *ngIf="!form.get('surname').pristine && !form.get('surname').valid" class="alert alert-danger">
+      Surname is required and should be from 2 to 20 letters
+    </div>
+    <label for="date">Date of birth</label>
+    <input class="form-control"  type="text" formControlName="age" placeholder="dd/mm/yyyy" id="date">
+    <div *ngIf="!form.get('age').pristine && !form.get('age').valid" class="alert alert-danger">
+      Surname is required and should be in format dd/mm/yyyy. Your age must be equal or higher than 18
+    </div>
+    <label for="phone">Phone</label>
+    <input class="form-control"  type="tel" formControlName="tel" placeholder="Phone" id="phone">
+    <div *ngIf="!form.get('tel').pristine && !form.get('tel').valid" class="alert alert-danger">
+      Phone is required
+    </div>
+    <label for="address">Address</label>
+    <input class="form-control"  type="text" formControlName="address" placeholder="Address" id="address">
+    <div *ngIf="!form.get('address').pristine && !form.get('address').valid" class="alert alert-danger">
+      Address is required
+    </div>
+    <label for="city">City</label>
+    <input class="form-control"  type="text" formControlName="city" placeholder="City" id="city">
+    <div *ngIf="!form.get('city').pristine && !form.get('city').valid" class="alert alert-danger">
+      City is required
+    </div>
+    <label for="street">Street</label>
+    <input class="form-control"  type="text" formControlName="street" placeholder="Street" id="street">
+    <div class="btn-wrapper">
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()">Continue</button>
+    </div>
 
-
-<form  #form="ngForm" *ngIf="hideStep2">
-  <div style="padding: 10px">
-    <p>First Step</p>
-    <input class="form-control"  type="text"
-           required
-           minlength="2"
-           maxlength="15"
-           name="name"
-           [(ngModel)]="userData1.name"
-           placeholder="Name"><br>
-    <!--<input class="form-control"  type="text" formControlName="surname" placeholder="Surname"><br>-->
-    <input class="form-control"  type="text"
-           required
-           pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}"
-           [(ngModel)]="userData1.age"
-           (change)="dateCheck($event)"
-           name="age"
-           placeholder="dd/mm/yyyy"><br>
-    <!--<input class="form-control"  type="tel" formControlName="tel" placeholder="Phone"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="address" placeholder="Address"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="city" placeholder="City"><br>-->
-    <!--<input class="form-control"  type="text" formControlName="street" placeholder="Street"><br>-->
   </div>
-  <button type="button" class="btn btn-primary" [disabled]="checkage || form.invalid" (click)="next()">Finish</button>
+
 </form>
+
+<step2 *ngIf="!hideStep2" [childData]='toChildData'></step2>

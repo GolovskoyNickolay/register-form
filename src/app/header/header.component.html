@@ -1,6 +1,8 @@
-<header>
-  <button (click)="logIn()"><a routerLink="/step1">Log in</a></button>
-  <button *ngIf="isLogin">Log out</button>
-  <button>Sign up</button>
-  <hr>
+<header class="header">
+  <button (click)="logIn()" *ngIf="login" class="btn btn-success btn-sm">Log in</button>
+  <button  *ngIf="logout" class="btn btn-success btn-sm">Log out</button>
+  <button *ngIf="signup" (click)="showSignUp()" class="btn btn-success btn-sm">Sign up</button>
 </header>
+<hr>
+<loginForm-component *ngIf="signup"></loginForm-component>
+<step1 *ngIf="!signup"></step1>

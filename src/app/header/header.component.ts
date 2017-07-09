@@ -3,15 +3,22 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'header-component',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['../global.css']
 })
 export class HeaderComponent {
-      isLogin: boolean = false;
+      login: boolean = false;
+      logout: boolean = false;
+      signup: boolean = true;
       constructor(){
 
       }
 
+  showSignUp(){
+    this.signup = false;
+    this.login= true;
+  }
   logIn(){
-
+    this.signup = true;
+    this.login= false;
   }
 }

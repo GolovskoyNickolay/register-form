@@ -1,27 +1,60 @@
+<div class="steps" *ngIf="!hideSummary">
+  <span class="steps__step" >Step 1</span>
+  <span class="steps__step steps__step_active">Step 2</span>
+</div>
 <form novalidate [formGroup]="form" class="form-group" *ngIf="!hideSummary">
-  <div style="padding: 10px">
-    <p>First Step</p>
-      <input class="form-control" type="text" formControlName="username" placeholder="Username"><br>
-      <input class="form-control"  type="password" formControlName="password" placeholder="Password"><br>
-      <input class="form-control"  type="password" formControlName="confirmPassword" placeholder="Confirm Password"><br>
-      <select class="form-control" formControlName="employ" (change)="onChange($event.target.value)">
-        <option>Employed</option>
-        <option>Unemployed</option>
-        <option>Student</option>
-      </select><br>
-    <input class="form-control" *ngIf="hidden" type="text" formControlName="work" placeholder="Where you are employed?"><br>
-    <select class="form-control" formControlName="money">
-      <option><10000$</option>
-      <option>20000$</option>
-      <option>30000$</option>
-      <option>40000$</option>
-      <option>>50000$</option>
-    </select><br>
-    <input class="form-control" type="text" formControlName="sport" placeholder="Favorite sport"><br>
-    <label for="terms">I accept terms and conditionals</label>
-    <input id="terms" type="checkbox" value="false" formControlName="terms">
+  <div class="form-wrapper">
+  <label for="username">Username</label>
+  <input class="form-control"  type="text" formControlName="username" placeholder="Username" id="username">
+  <div *ngIf="!form.get('username').pristine && !form.get('username').valid" class="alert alert-danger">
+    Username is required and should be from 2 to 20 letters
   </div>
-<button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="finish()">Continue</button>
+  <label for="password">Password</label>
+  <input class="form-control"  type="password" formControlName="password" placeholder="Password" id="password">
+  <div *ngIf="!form.get('password').pristine && !form.get('password').valid" class="alert alert-danger">
+    Password is required, must contain 1 capital letter, 1 number, alphanumeric and min length is 6
+  </div>
+  <label for="confirmPassword">Confirm Password</label>
+  <input class="form-control"  type="password" formControlName="confirmPassword" placeholder="Confirm Password" id="confirmPassword">
+  <div *ngIf="!form.get('confirmPassword').pristine && !form.get('confirmPassword').valid" class="alert alert-danger">
+    Password doesn't match
+  </div>
+  <label for="employ">Employment status</label>
+  <select class="form-control" formControlName="employ" (change)="onChange($event.target.value)" id="employ">
+    <option>Employed</option>
+    <option>Unemployed</option>
+    <option>Student</option>
+  </select>
+  <div *ngIf="!form.get('employ').pristine && !form.get('employ').valid" class="alert alert-danger">
+    Employment status is required
+  </div>
+  <div *ngIf="hidden" >
+    <label for="work">Place of employment</label>
+    <input class="form-control"  type="text" formControlName="work" placeholder="Place of employment" id="work">
+    <div *ngIf="!form.get('work').pristine && !form.get('work').valid" class="alert alert-danger">
+      Work is required
+    </div>
+  </div>
+  <label for="money">Annual income</label>
+  <select class="form-control" formControlName="money" id="money">
+    <option><10000$</option>
+    <option>20000$</option>
+    <option>30000$</option>
+    <option>40000$</option>
+    <option>>50000$</option>
+  </select>
+  <label for="sport">Sport</label>
+  <input class="form-control"  type="text" formControlName="sport" placeholder="Name" id="sport">
+  <label for="terms">I accept terms and conditionals</label>
+  <input id="terms" type="checkbox" value="false" formControlName="terms">
+    <div class="btn-wrapper">
+      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="finish()">Finish</button>
+    </div>
+
+  </div>
 </form>
 
 <summary [data]="completeData" *ngIf="hideSummary"></summary>
+
+
+

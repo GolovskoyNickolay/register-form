@@ -1,5 +1,10 @@
-<div>
-  <input type="text">
-  <input type="text">
-  <button>Log in</button>
+
+
+
+<div class="form-wrapper">
+  <input (input)="checkUsername($event)" class="form-control" type="text">
+  <div *ngIf="usernameError" class="alert alert-danger">No such user</div>
+  <input (input)="checkPassword($event)" class="form-control" type="password">
+  <div *ngIf="passwordError" class="alert alert-danger">Password is incorrect</div>
+  <button class="btn btn-primary" (click)="logIn()">Log in</button>
 </div>
