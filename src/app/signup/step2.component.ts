@@ -1,5 +1,6 @@
 import {Component, OnInit,  Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
+import { ShareData } from '../shareData.service';
 
 @Component({
   selector: 'step2',
@@ -8,13 +9,10 @@ import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
 })
 export class Step2 implements OnInit{
 
-    @Input() childData:any;
-
     hidden: boolean = false;
     form: FormGroup;
-    completeData: any;
-    hideSummary = false;
-  constructor(private fb: FormBuilder){
+    data:any;
+  constructor(private fb: FormBuilder,public ShareData: ShareData){
 
   }
 
@@ -29,6 +27,7 @@ export class Step2 implements OnInit{
     }
   }
   ngOnInit() {
+    console.log('Step 2 data',this.ShareData.getData());
     this.form = this.fb.group({
       username: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(15)] ],
       password: ['',[Validators.required,Validators.minLength(6),Validators.pattern('^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')] ],
@@ -48,9 +47,9 @@ export class Step2 implements OnInit{
   }
 
   finish(){
-    this.completeData = Object.assign({}, this.form.value, this.childData);
-    localStorage.setItem(this.completeData.username , JSON.stringify(this.completeData));
-    this.hideSummary = true;
+    this.ShareData.setData(this.form.value);
+    this.data = this.ShareData.getData();
+    localStorage.setItem(this.data.username, JSON.stringify(this.data));
   }
 
 }

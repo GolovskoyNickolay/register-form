@@ -1,9 +1,9 @@
 
-<div class="steps" *ngIf="hideStep2">
+<div class="steps">
   <span class="steps__step steps__step_active" >Step 1</span>
   <span class="steps__step">Step 2</span>
 </div>
-<form novalidate [formGroup]="form" *ngIf="hideStep2">
+<form novalidate [formGroup]="form" >
   <div class="form-wrapper">
     <label for="name">Name</label>
     <input class="form-control"  type="text" formControlName="name" placeholder="Name" id="name">
@@ -38,11 +38,16 @@
     <label for="street">Street</label>
     <input class="form-control"  type="text" formControlName="street" placeholder="Street" id="street">
     <div class="btn-wrapper">
-      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()">Continue</button>
+
+      <a routerLink="/step2">
+        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="next()">
+          Continue
+        </button>
+      </a>
+
     </div>
 
   </div>
 
 </form>
 
-<step2 *ngIf="!hideStep2" [childData]='toChildData'></step2>

@@ -1,5 +1,6 @@
 import { Component, OnInit , ViewChild, NgModule, ChangeDetectorRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
+import { ShareData } from '../shareData.service';
 
 @Component({
   selector: 'step1',
@@ -7,18 +8,14 @@ import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
   styleUrls: ['../global.css']
 })
 export class Step1 implements OnInit {
-  toChildData:any;
   form: FormGroup;
-  hideStep2: boolean = true;
-  stepActive: boolean = true;
 
-  constructor(private fb: FormBuilder, private detect : ChangeDetectorRef){
+  constructor(private fb: FormBuilder,public ShareData: ShareData){
 
 
   }
   validateDate(c: FormControl) {
     let Date_REGEXP = new RegExp('^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$');
-
     let isValid = Date_REGEXP.test(c.value);
     if(isValid){
       let today = new Date();
@@ -52,9 +49,9 @@ export class Step1 implements OnInit {
   }
 
   next(){
-    this.stepActive = false;
-    this.toChildData = this.form.value;
-    this.hideStep2 = false;
+    this.ShareData.setData(this.form.value);
+    console.log(this.form.value);
+    this.ShareData.getData();
 }
 
 }

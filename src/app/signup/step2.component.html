@@ -1,8 +1,8 @@
-<div class="steps" *ngIf="!hideSummary">
+<div class="steps">
   <span class="steps__step" >Step 1</span>
   <span class="steps__step steps__step_active">Step 2</span>
 </div>
-<form novalidate [formGroup]="form" class="form-group" *ngIf="!hideSummary">
+<form novalidate [formGroup]="form" class="form-group" >
   <div class="form-wrapper">
   <label for="username">Username</label>
   <input class="form-control"  type="text" formControlName="username" placeholder="Username" id="username">
@@ -53,8 +53,6 @@
 
   </div>
 </form>
-
-<summary [data]="completeData" *ngIf="hideSummary"></summary>
 
 
 
