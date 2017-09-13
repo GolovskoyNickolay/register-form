@@ -1,21 +1,22 @@
 import { Component, OnInit , ViewChild, NgModule, ChangeDetectorRef, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
-
+import { ShareData } from '../services/shareData.service';
 
 @Component({
   selector: 'summary',
-  templateUrl: './summary.component.html',
+  templateUrl: 'summary.component.html',
   styleUrls: ['../global.css']
 })
 
 export class Summary implements OnInit{
-    @Input() data:any;
+    // @Input() data:any;
+  data: any;
   form: FormGroup;
   hidden:boolean = false;
   editMode:boolean = false;
   summaryData: any;
-  constructor(private fb: FormBuilder){
-
+  constructor(private fb: FormBuilder, private share: ShareData){
+        this.data = this.share.getData();
   }
 
 
@@ -44,8 +45,8 @@ export class Summary implements OnInit{
     this.summaryData  = this.form.value;
   }
   saveEdit(){
-    localStorage.removeItem(this.summaryData.username);
-    localStorage.setItem(this.form.value.username, JSON.stringify(this.form.value));
+    this.share.removeData();
+    this.share.setData(this.form.value);
     this.editMode = false;
   }
   onChange(e){

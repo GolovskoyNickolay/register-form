@@ -1,10 +1,10 @@
 import {Component, OnInit,  Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
-import { ShareData } from '../shareData.service';
+import { ShareData } from '../services/shareData.service';
 
 @Component({
   selector: 'step2',
-  templateUrl: './step2.component.html',
+  templateUrl: 'step2.component.html',
   styleUrls: ['../global.css']
 })
 export class Step2 implements OnInit{
@@ -48,8 +48,6 @@ export class Step2 implements OnInit{
 
   finish(){
     this.ShareData.setData(this.form.value);
-    this.data = this.ShareData.getData();
-    localStorage.setItem(this.data.username, JSON.stringify(this.data));
   }
 
 }

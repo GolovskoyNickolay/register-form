@@ -48,7 +48,10 @@
   <label for="terms">I accept terms and conditionals</label>
   <input id="terms" type="checkbox" value="false" formControlName="terms">
     <div class="btn-wrapper">
-      <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="finish()">Finish</button>
+      <a routerLink="/summary">
+        <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="finish()">Finish</button>
+      </a>
+
     </div>
 
   </div>

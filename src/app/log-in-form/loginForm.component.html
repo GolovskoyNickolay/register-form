@@ -1,10 +1,30 @@
-
-
-
-<div class="form-wrapper">
-  <input (input)="checkUsername($event)" class="form-control" type="text">
-  <div *ngIf="usernameError" class="alert alert-danger">No such user</div>
-  <input (input)="checkPassword($event)" class="form-control" type="password">
-  <div *ngIf="passwordError" class="alert alert-danger">Password is incorrect</div>
-  <button class="btn btn-primary" (click)="logIn()">Log in</button>
+<div class="greating">
+  <h3>Please, log in with your existing account or sing up with new one.</h3>
 </div>
+
+
+<form novalidate [formGroup]="form" >
+  <div class="form-wrapper">
+    <label for="username">
+      Login:
+      <input id="username" (input)="checkUsername()" class="form-control" type="text" formControlName="username">
+    </label><br>
+    <label for="password">
+      Password:
+      <input id="password" (input)="checkPassword()" class="form-control" type="password" formControlName="password">
+    </label>
+
+    <div *ngIf="passwordError" class="alert alert-danger">Password is incorrect</div>
+    <div class="btn-wrapper">
+      <a routerLink="/step1" *ngIf="!newUser">
+        <button class="btn btn-primary" [disabled]="passwordError || form.invalid">Log in</button>
+      </a>
+      <a routerLink="/step1" *ngIf="newUser">
+        <button class="btn btn-primary" [disabled]="form.invalid" (click)="signUp()">Sign Up</button>
+      </a>
+
+    </div>
+
+  </div>
+
+</form>

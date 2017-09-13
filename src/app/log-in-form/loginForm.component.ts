@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
 
 @Component({
   selector: 'loginForm-component',
@@ -6,34 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['../global.css']
 })
 export class LoginFormComponent {
-  username: string = '';
-  password: any = '';
-  usernameError: boolean = false;
+  form: FormGroup;
+  newUser: boolean = false;
   passwordError: boolean = false;
-  constructor(){
+  constructor(private fb: FormBuilder){
+    this.form = this.fb.group({
+      username: ['',[Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
-  checkUsername(e){
-    if(!localStorage.getItem(e.target.value)){
-      this.usernameError = true;
+  checkUsername(){
+    if(!localStorage.getItem(this.form.controls['username']['_value'])){
+      this.newUser = true;
     }else{
-      this.usernameError = false;
-      this.username = e.target.value;
+      this.newUser = false;
     }
   }
-  checkPassword(e){
-    if(this.username && JSON.parse(localStorage.getItem(this.username)).password !== e.target.value){
+  checkPassword(){
+    if(!this.newUser && localStorage.getItem(this.form.controls['username']['_value'])  !== this.form.controls['password']['_value']){
       this.passwordError = true;
     }else{
       this.passwordError = false;
-      this.password = e.target.value;
     }
   }
-  logIn(){
-    if(!this.password){
-      this.passwordError = true;
-    }
-   if(!this.username){
-     this.usernameError = true;
-   }
+  signUp(){
+    localStorage.setItem(this.form.controls['username']['_value'], this.form.controls['password']['_value']);
   }
 }

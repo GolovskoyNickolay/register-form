@@ -82,4 +82,11 @@
   color: #d8d3d3;
   cursor: not-allowed; }
 
+.greating {
+  text-align: center;
+  margin: 50px 0; }
+
+label {
+  width: 100%; }
+
 /*# sourceMappingURL=global.css.map */

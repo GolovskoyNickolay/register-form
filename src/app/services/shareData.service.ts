@@ -10,6 +10,10 @@ export class ShareData {
   setData(data){
     this.data = Object.assign({}, this.data, data);
   }
+  removeData(){
+      this.data = {};
+  }
+
   getData(){
     return this.data;
   }

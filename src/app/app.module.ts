@@ -7,10 +7,10 @@ import { RouterModule, Routes, RouterLink } from '@angular/router';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from "./header/header.component";
 import {LoginFormComponent} from "./log-in-form/loginForm.component";
-import { Step1 } from './signup/step1.component';
-import { Step2 } from './signup/step2.component';
-import { Summary } from './signup/summary.component';
-import { ShareData } from './shareData.service';
+import { Step1 } from './step1/step1.component';
+import { Step2 } from './step2/step2.component';
+import { Summary } from './summary/summary.component';
+import { ShareData } from './services/shareData.service';
 
 
 

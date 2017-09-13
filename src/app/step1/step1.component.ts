@@ -1,10 +1,10 @@
 import { Component, OnInit , ViewChild, NgModule, ChangeDetectorRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
-import { ShareData } from '../shareData.service';
+import { ShareData } from '../services/shareData.service';
 
 @Component({
   selector: 'step1',
-  templateUrl: './step1.component.html',
+  templateUrl: 'step1.component.html',
   styleUrls: ['../global.css']
 })
 export class Step1 implements OnInit {
@@ -50,8 +50,6 @@ export class Step1 implements OnInit {
 
   next(){
     this.ShareData.setData(this.form.value);
-    console.log(this.form.value);
-    this.ShareData.getData();
 }
 
 }
