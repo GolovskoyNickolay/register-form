@@ -5,11 +5,11 @@
 
 <form novalidate [formGroup]="form" >
   <div class="form-wrapper">
-    <label for="username">
+    <label class="greating-labels" for="username">
       Login:
       <input id="username" (input)="checkUsername()" class="form-control" type="text" formControlName="username">
     </label><br>
-    <label for="password">
+    <label class="greating-labels" for="password">
       Password:
       <input id="password" (input)="checkPassword()" class="form-control" type="password" formControlName="password">
     </label>
